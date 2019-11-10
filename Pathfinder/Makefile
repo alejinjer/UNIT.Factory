@@ -18,6 +18,7 @@ SRC	= 	main.c\
 		mx_isnumber.c\
 		mx_printerr_pf.c\
 		mx_atoi.c\
+		mx_validate_file.c\
 
 SRCS	=	$(addprefix $(SRCD)/, $(SRC))
 OBJS	=	$(addprefix $(OBJD)/, $(SRC:%.c=%.o))
@@ -27,7 +28,7 @@ all: install
 install: $(LMXA) $(NAME)
 
 $(NAME): $(OBJS)
-	@clang $(CFLG) $(OBJS) $(LMXA) -o $@
+	@clang $(CFLG) $(OBJS) -L$(LMXD) -lmx -o $@
 	@printf "\r\33[2K$@\t   \033[32;1mcreated\033[0m\n"
 
 $(OBJD)/%.o: $(SRCD)/%.c $(INCS)
