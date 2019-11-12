@@ -1,4 +1,4 @@
-#include "libmx.h"
+#include "pathfinder.h"
 
 bool mx_isnumber(char *s) {
     int i = -1;
