@@ -14,21 +14,11 @@ INC		=	pathfinder.h
 INCS	=	$(addprefix $(INCD)/, $(INC))
 
 SRC	= 	main.c\
-		mx_arrlen.c\
-		mx_isnumber.c\
-		mx_printerr_pf.c\
-		mx_atoi.c\
-		mx_validate_file.c\
-		mx_get_str_index.c\
-		mx_get_islands_arr.c\
-		mx_create_strarr.c\
-		mx_create_graph.c\
-		mx_new_adj_list_node.c\
-		mx_add_edge.c\
-		mx_get_island1.c\
-		mx_get_island2.c\
-		mx_get_weight_between.c\
-		mx_get_weight_matrix.c\
+		utils.c\
+		parse_file.c\
+		islands.c\
+		links.c\
+		
 
 SRCS	=	$(addprefix $(SRCD)/, $(SRC))
 OBJS	=	$(addprefix $(OBJD)/, $(SRC:%.c=%.o))

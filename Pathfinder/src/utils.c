@@ -32,3 +32,39 @@ void mx_printerr_pf(t_error err, const char *s)
     mx_printerr("\n");
     exit(1);
 }
+
+int mx_arrlen(char **arr)
+{
+    int length = 0;
+
+    while (*arr)
+    {
+        length++;
+        arr++;
+    }
+    return length;
+}
+
+bool mx_isnumber(char *s) {
+    int i = -1;
+
+    while (s[++i])
+        if (!mx_isdigit(s[i]))
+            return false;
+    return true;
+}
+
+int mx_atoi(const char *str)
+{
+    int i = -1;
+    int result = 0;
+
+    while (str[++i])
+    {
+        if (mx_isdigit(str[i]))
+            result = result * 10 + str[i] - '0';
+        if (!mx_isdigit(str[i]))
+            return result;
+    }
+    return result;
+}
