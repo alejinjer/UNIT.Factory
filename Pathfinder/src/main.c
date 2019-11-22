@@ -10,6 +10,20 @@ t_main *mx_create_main()
     return m;
 }
 
+void mx_prepare_for_algorithm(t_main *m)
+{
+    t_island *iter = m->islands;
+    int i = 0;
+
+    while (iter)
+    {
+        iter->index = i;
+        iter->paths = malloc(sizeof(t_path *) * m->V);
+        i++;
+        iter = iter->next;
+    }
+}
+
 int main(int argc, char *argv[])
 {
     int fd;
@@ -24,9 +38,12 @@ int main(int argc, char *argv[])
     m->filename = argv[1];
     m->fd = fd;
     mx_parse_file(m);
+    mx_prepare_for_algorithm(m);
+    mx_find_all_paths(m);
 
     
+    // print paths
 
-    // system("leaks -q pathfinder");
+    system("leaks -q pathfinder");
     return 0;
 }

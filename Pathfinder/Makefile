@@ -18,6 +18,8 @@ SRC	= 	main.c\
 		parse_file.c\
 		islands.c\
 		links.c\
+		paths.c\
+		find_all_paths.c
 		
 
 SRCS	=	$(addprefix $(SRCD)/, $(SRC))

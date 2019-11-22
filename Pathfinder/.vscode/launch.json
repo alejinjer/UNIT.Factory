@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/pathfinder",
-            "args": ["tests/example1"],
+            "args": ["tests/example2"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
