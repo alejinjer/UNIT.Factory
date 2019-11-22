@@ -19,7 +19,8 @@ SRC	= 	main.c\
 		islands.c\
 		links.c\
 		paths.c\
-		find_all_paths.c
+		find_all_paths.c\
+		print_all_paths.c
 		
 
 SRCS	=	$(addprefix $(SRCD)/, $(SRC))
@@ -31,11 +32,11 @@ install: $(LMXA) $(NAME)
 
 $(NAME): $(OBJS)
 	@clang $(CFLG) $(OBJS) -L$(LMXD) -lmx -o $@
-	@printf "\r\33[2K$@\t   \033[32;1mcreated\033[0m\n"
+	@printf "\r\33[2K$@ \033[32;1mcreated\033[0m\n"
 
 $(OBJD)/%.o: $(SRCD)/%.c $(INCS)
 	@clang $(CFLG) -c $< -o $@ -I$(INCD) -I$(LMXI)
-	@printf "\r\33[2K$(NAME)\t   \033[33;1mcompile \033[0m$(<:$(SRCD)/%.c=%) "
+	@printf "\r\33[2K$(NAME) \033[33;1mcompile \033[0m$(<:$(SRCD)/%.c=%) "
 
 $(OBJS): | $(OBJD)
 
@@ -47,11 +48,11 @@ $(LMXA):
 clean:
 	@make -sC $(LMXD) $@
 	@rm -rf $(OBJD)
-	@printf "$(OBJD)\t\t   \033[31;1mdeleted\033[0m\n"
+	@printf "$(OBJD)\t   \033[31;1mdeleted\033[0m\n"
 
 uninstall: clean
 	@make -sC $(LMXD) $@
 	@rm -rf $(NAME)
-	@printf "$(NAME)\t   \033[31;1muninstalled\033[0m\n"
+	@printf "$(NAME) \033[31;1muninstalled\033[0m\n"
 
 reinstall: uninstall install

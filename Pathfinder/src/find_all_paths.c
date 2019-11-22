@@ -32,7 +32,6 @@ static void find_path(t_main *m, t_link *visited, int weight, t_path **paths)
         {
             m->start = iter->linked_island;
             find_path(m, visited, iter->weight, paths);
-            m->start = m->start_remainder;
             iter = iter->next;
         }
     mx_pop_back_link(&visited);

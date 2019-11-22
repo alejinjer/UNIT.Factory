@@ -53,6 +53,7 @@ struct s_main
 struct s_path
 {
     t_link *route;
+    int dist;
     t_path *next;
 };
 
@@ -74,12 +75,14 @@ void mx_add_link(t_link **links, t_link *l);
 void mx_push_back_link(t_link **links, t_link *l);
 void mx_set_link(t_link **links, t_island *linked_island, int weight);
 void mx_pop_back_link(t_link **links);
+//paths.c
+t_path *mx_create_path(t_link *routes);
+void mx_add_path(t_path **paths, t_path *p);
 //parse_file.c
 void mx_parse_file(t_main *m);
 //find_all_paths.c
 void mx_find_all_paths(t_main *m);
-//paths.c
-t_path *mx_create_path(t_link *routes);
-void mx_add_path(t_path **paths, t_path *p);
+//print_all_paths.c
+void mx_print_all_paths(t_main *m);
 
 #endif
