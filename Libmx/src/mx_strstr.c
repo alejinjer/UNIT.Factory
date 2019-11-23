@@ -12,9 +12,7 @@ char *mx_strstr(const char *haystack, const char *needle)
     while (*haystack)
     {
         if (mx_strncmp(haystack, needle, needle_len) == 0)
-        {
             return (char *)haystack;
-        }
         haystack += 1;
     }
     return NULL;
