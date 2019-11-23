@@ -10,31 +10,23 @@ static void check_first_line(t_main *m)
         mx_strdel(&m->lineptr);
     }
     else
-        mx_printerr_pf(INVLD_FRST_LINE, NULL);
+        mx_terminate("error: line 1 isn\'t valid");
 }
 
-static bool check_line(char *line) // переделать + добавить проверку i1 и i2 != 0
+static bool check_line(char *line)
 {
     int i = -1;
     int island1 = 0;
     int island2 = 0;
 
-    while (line[++i])
-    {
-        if (mx_isalpha(line[i]))
-            island1++;
-        else
-            break;
-    }
+    while (mx_isalpha(line[++i]))
+        island1++;
     if (line[i] != '-')
         return false;
-    while (line[++i])
-    {
-        if (mx_isalpha(line[i]))
-            island2++;
-        else
-            break;
-    }
+    while (mx_isalpha(line[++i]))
+        island2++;
+    if (!island1 || !island2)
+        return false;
     if (line[i++] != ',')
         return false;
     if (!mx_isnumber(line + i))
@@ -42,7 +34,7 @@ static bool check_line(char *line) // переделать + добавить п
     return true;
 }
 
-static void mx_parse_line(t_main *m)
+static void parse_line(t_main *m)
 {
     char **ptr;
     char *ptr1;
@@ -63,6 +55,18 @@ static void mx_parse_line(t_main *m)
     mx_set_link(&island2->links, island1, weight);
 }
 
+static void check_isl_count(t_main *m) {
+    t_island *iter = m->islands;
+    int count = 0;
+
+    while (iter) {
+        count++;
+        iter = iter->next;
+    }
+    if (m->V != count)
+        mx_terminate("error: invalid number of islands");
+}
+
 void mx_parse_file(t_main *m)
 {
     int line = 2;
@@ -72,10 +76,11 @@ void mx_parse_file(t_main *m)
     while (mx_read_line(&m->lineptr, BUF_SIZE, DELIM, m->fd) > 0)
     {
         if (check_line(m->lineptr))
-            mx_parse_line(m);
+            parse_line(m);
         else
             mx_printerr_pf(INVLD_LINE, mx_itoa(line));
         mx_strdel(&m->lineptr);
         line++;
     }
+    check_isl_count(m);
 }

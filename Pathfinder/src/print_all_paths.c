@@ -66,16 +66,19 @@ static void print_paths(t_path *path)
 
     while (p) // all routes of each path
     {
-        end_link = get_end_link(p->route);
-        mx_printstr("========================================\n");
-        mx_printstr("Path: ");
-        mx_printstr(p->route->linked_island->name);
-        mx_printstr(" -> ");
-        mx_printstr(end_link->linked_island->name);
-        mx_printstr("\n");
-        print_route(p->route);
-        print_distance(p->route);
-        mx_printstr("========================================\n");
+        if (p->is_shortest)
+        {
+            end_link = get_end_link(p->route);
+            mx_printstr("========================================\n");
+            mx_printstr("Path: ");
+            mx_printstr(p->route->linked_island->name);
+            mx_printstr(" -> ");
+            mx_printstr(end_link->linked_island->name);
+            mx_printstr("\n");
+            print_route(p->route);
+            print_distance(p->route);
+            mx_printstr("========================================\n");
+        }
         p = p->next;
     }
 }
@@ -90,7 +93,6 @@ void mx_print_all_paths(t_main *m)
         for (int i = 0; i < m->V; i++) // all paths of each island
         {
             pth = isl->paths[i];
-            // del extra routes
             if (pth)
                 print_paths(pth);
         }

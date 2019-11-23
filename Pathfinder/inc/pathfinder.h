@@ -1,19 +1,16 @@
 #ifndef PATHFINDER_HEADER
 #define PATHFINDER_HEADER
 
-#define BUF_SIZE 128
-#define DELIM '\n'
+#define BUF_SIZE 128 // for read_line
+#define DELIM '\n'   // for read_line
 
 #include "libmx.h"
 
 typedef enum e_error
 {
-    INVLD_CMD_ARGS,
     FILE_DEXIST,
     FILE_EMPTY,
-    INVLD_FRST_LINE,
     INVLD_LINE,
-    INVLD_NUM_ISLDS
 } t_error;
 
 typedef struct s_island t_island;
@@ -53,14 +50,15 @@ struct s_main
 struct s_path
 {
     t_link *route;
-    int dist;
+    int dist;         // summary distance of route
+    bool is_shortest; // true if dist of this path is minimum in this list of paths
     t_path *next;
 };
 
 //util.c
 void mx_printerr_pf(t_error err, const char *s);
+void mx_terminate(char *error_message);
 bool mx_isnumber(char *s);
-int mx_arrlen(char **arr);
 int mx_atoi(const char *str);
 //main.c
 t_main *mx_create_main();

@@ -15,6 +15,51 @@ static bool is_visited(t_link *visited, t_island *i)
     return false;
 }
 
+static void set_distances(t_path *path)
+{
+    t_path *iter = path;
+    t_link *rt;
+    int distance;
+
+    while (iter)
+    {
+        if (!iter->dist)
+        {
+            rt = iter->route;
+            distance = 0;
+            while (rt)
+            {
+                distance += rt->weight;
+                rt = rt->next;
+            }
+            iter->dist = distance;
+            distance = 0;
+        }
+        iter = iter->next;
+    }
+}
+
+static void check_is_shortest(t_path *path)
+{
+    t_path *iter = path;
+    int min_dist = path->dist;
+
+    while (iter)
+    {
+        if (iter->dist < min_dist)
+            min_dist = iter->dist;
+        iter->is_shortest = false;
+        iter = iter->next;
+    }
+    iter = path;
+    while (iter)
+    {
+        if (iter->dist == min_dist)
+            iter->is_shortest = true;
+        iter = iter->next;
+    }
+}
+
 static void find_path(t_main *m, t_link *visited, int weight, t_path **paths)
 {
     t_link *iter = m->start->links;
@@ -52,6 +97,8 @@ void mx_find_all_paths(t_main *m)
             {
                 find_path(m, visited, 0, m->start->paths);
                 m->start = m->start_remainder;
+                set_distances(m->start->paths[m->end->index]);
+                check_is_shortest(m->start->paths[m->end->index]);
             }
             m->end = m->end->next;
         }

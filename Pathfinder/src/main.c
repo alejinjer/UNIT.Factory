@@ -35,7 +35,7 @@ int main(int argc, char *argv[])
     t_main *m;
 
     if (argc != 2)
-        mx_printerr_pf(INVLD_CMD_ARGS, NULL);
+        mx_terminate("usage: ./pathfinder [filename]");
     fd = open(argv[1], O_RDONLY);
     if (read(fd, 0, 0) < 0)
         mx_printerr_pf(FILE_DEXIST, argv[1]);
@@ -46,8 +46,7 @@ int main(int argc, char *argv[])
     mx_prepare_for_algorithm(m);
     mx_find_all_paths(m);
     mx_print_all_paths(m);
-    // print paths
 
-    system("leaks -q pathfinder");
+    system("leaks -q pathfinder"); // не забудь убрать
     return 0;
 }
