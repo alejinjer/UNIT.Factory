@@ -17,9 +17,8 @@ char *mx_del_extra_spaces(const char *str)
     int final_str_len = 0;
     int j = 0;
 
-    if (!str)
+    if (!(trimmed_str = mx_strtrim(str)))
         return NULL;
-    trimmed_str = mx_strtrim(str);
     final_str_len = get_final_len(trimmed_str);
     final_str = mx_strnew(final_str_len);
     for (int i = 0; i < mx_strlen(trimmed_str); i++)

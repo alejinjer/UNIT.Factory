@@ -7,7 +7,7 @@ void *mx_memchr(const void *s, int c, size_t n)
     while (ptr && n--)
     {
         if (*ptr == c)
-            return (void*)ptr;
+            return (void *)ptr;
         ptr++;
     }
     return NULL;
