@@ -7,7 +7,7 @@ void mx_printerr_pf(t_error err, const char *s)
     case FILE_DEXIST:
         mx_printerr("error: file ");
         mx_printerr(s);
-        mx_printerr(" doesn\'t exist");
+        mx_printerr(" does not exist");
         break;
     case FILE_EMPTY:
         mx_printerr("error: file ");

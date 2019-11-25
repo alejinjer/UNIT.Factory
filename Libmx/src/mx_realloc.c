@@ -1,7 +1,5 @@
 #include "libmx.h"
 
-void *mx_memcpy(void *restrict dst, const void *restrict src, size_t n);
-
 void *mx_realloc(void *ptr, size_t size)
 {
     void *result = NULL;
@@ -11,7 +9,7 @@ void *mx_realloc(void *ptr, size_t size)
     if (!size && ptr)
     {
         free(ptr);
-        return NULL;
+        return malloc(1);
     }
     result = malloc(size);
     mx_memcpy(result, ptr, malloc_size(ptr));

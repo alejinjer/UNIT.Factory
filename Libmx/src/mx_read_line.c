@@ -30,7 +30,7 @@ int mx_read_line(char **lineptr, int buf_size, char delim, const int fd)
     int delim_index;
 
     if (fd < 0 || fd > 4096 || buf_size <= 0 || read(fd, 0, 0) < 0)
-        return -1;
+        return -2;
     last_leaving = get_leaving(buf_size, delim, fd);
     tmp = mx_strjoin(leavings[fd], last_leaving);
     mx_strdel(&last_leaving);
@@ -42,5 +42,5 @@ int mx_read_line(char **lineptr, int buf_size, char delim, const int fd)
     delim_index >= 0 ? leavings[fd] = mx_strdup(tmp + delim_index + 1) : 0;
     *lineptr = mx_strdup(tmp);
     mx_strdel(&tmp);
-    return mx_strlen(*lineptr);
+    return leavings[fd] ? mx_strlen(*lineptr) : -1;
 }

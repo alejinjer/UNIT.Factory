@@ -19,8 +19,8 @@ int mx_tolower(int c);
 int mx_toupper(int c);
 int mx_strncmp(const char *s1, const char *s2, size_t n);
 void mx_printerr(const char *s);
-// --- добавить memalloc(size_t size);
-// --- добавить terminate(char *s);
+void mx_terminate(char *error_message);
+void *mx_memalloc(size_t size);
 
 // Utils pack
 void mx_printchar(char c);                                             // ok
@@ -53,7 +53,7 @@ int mx_strcmp(const char *s1, const char *s2);                                  
 char *mx_strcat(char *restrict s1, const char *restrict s2);                    // ok
 char *mx_strstr(const char *haystack, const char *needle);                      // ok
 int mx_get_substr_index(const char *str, const char *sub);                      // ok
-int mx_count_substr(const char *str, const char *sub);                          // 80 points !!!
+int mx_count_substr(const char *str, const char *sub);                          // 80 points fixed
 int mx_count_words(const char *str, char c);                                    // ok
 char *mx_strnew(const int size);                                                // ok
 char *mx_strtrim(const char *str);                                              // 90 points fixed
@@ -61,19 +61,19 @@ char *mx_del_extra_spaces(const char *str);                                     
 char **mx_strsplit(const char *s, char c);                                      // 75 points fixed
 char *mx_strjoin(const char *s1, const char *s2);                               // ok
 char *mx_file_to_str(const char *file);                                         // ok
-int mx_read_line(char **lineptr, int buf_size, char delim, const int fd);       // 30 points !!!
+int mx_read_line(char **lineptr, int buf_size, char delim, const int fd);       // 30 points fixed
 char *mx_replace_substr(const char *str, const char *sub, const char *replace); // ok
 
 // Memory pack
 void *mx_memset(void *b, int c, size_t len);                                             // ok
 void *mx_memcpy(void *restrict dst, const void *restrict src, size_t n);                 // ok
-void *mx_memccpy(void *restrict dst, const void *restrict src, int c, size_t n);         // 70 points !!!
-int mx_memcmp(const void *s1, const void *s2, size_t n);                                 // 54 points !!!
+void *mx_memccpy(void *restrict dst, const void *restrict src, int c, size_t n);         // 70 points fixed
+int mx_memcmp(const void *s1, const void *s2, size_t n);                                 // 54 points fixed
 void *mx_memchr(const void *s, int c, size_t n);                                         // ok
 void *mx_memrchr(const void *s, int c, size_t n);                                        // ok
-void *mx_memmem(const void *big, size_t big_len, const void *little, size_t little_len); // 75 !!!
+void *mx_memmem(const void *big, size_t big_len, const void *little, size_t little_len); // 75 points fixed
 void *mx_memmove(void *dst, const void *src, size_t len);                                // ok
-void *mx_realloc(void *ptr, size_t size);                                                // 70 points !!!
+void *mx_realloc(void *ptr, size_t size);                                                // 70 points fixed
 
 //List pack
 typedef struct s_list
@@ -88,6 +88,6 @@ void mx_push_back(t_list **list, void *data);                   // ok
 void mx_pop_front(t_list **head);                               // 60 points fixed
 void mx_pop_back(t_list **head);                                // 0 points fixed
 int mx_list_size(t_list *list);                                 // ok
-t_list *mx_sort_list(t_list *lst, bool (*cmp)(void *, void *)); // 0 points !!!
+t_list *mx_sort_list(t_list *lst, bool (*cmp)(void *, void *)); // 0 points fixed
 
 #endif

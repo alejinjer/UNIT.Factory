@@ -28,6 +28,7 @@ SRC	= 	mx_binary_search.c\
 		mx_isupper.c\
 		mx_itoa.c\
 		mx_list_size.c\
+		mx_memalloc.c\
 		mx_memccpy.c\
 		mx_memchr.c\
 		mx_memcmp.c\
@@ -70,6 +71,7 @@ SRC	= 	mx_binary_search.c\
 		mx_strstr.c\
 		mx_strtrim.c\
 		mx_swap_char.c\
+		mx_terminate.c\
 		mx_tolower.c\
 		mx_toupper.c\
 
