@@ -29,7 +29,7 @@ static bool check_line(char *line)
         return false;
     if (line[i++] != ',')
         return false;
-    if (!mx_isnumber(line + i))
+    if (!(line[i]) || !mx_isnumber(line + i))
         return false;
     return true;
 }

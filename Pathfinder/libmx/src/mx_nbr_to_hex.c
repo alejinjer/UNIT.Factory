@@ -1,21 +1,27 @@
 #include "libmx.h"
 
-char *mx_nbr_to_hex(unsigned long nbr)
+static int num_len(unsigned long num)
 {
-    char *number = NULL;
-    unsigned long num = nbr;
     int length = 0;
-    int temp;
-    
+
     while (num)
     {
         num /= 16;
         length++;
     }
-    num = nbr;
+    return length;
+}
+
+char *mx_nbr_to_hex(unsigned long nbr)
+{
+    char *number = NULL;
+    unsigned long num = nbr;
+    int length = num_len(nbr);
+    int temp;
+
     number = malloc(length);
     if (nbr == 0)
-        return mx_strcpy(number, "0");;
+        return mx_strcpy(number, "0");
     while (num)
     {
         temp = num % 16;

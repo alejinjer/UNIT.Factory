@@ -3,13 +3,14 @@
 char *mx_strtrim(const char *str)
 {
     char *trimmed = NULL;
-    int str_len = mx_strlen(str);
+    int str_len;
     int trimmed_len = 0;
     int before = 0;
     int after = 0;
 
     if (!str)
         return NULL;
+    str_len = mx_strlen(str);
     for (int i = 0; mx_isspace(str[i]); i++)
         before++;
     for (int i = str_len - 1; mx_isspace(str[i]); i--)
