@@ -24,9 +24,7 @@ static int partition(char **arr, int l, int r, int *swap_count)
         if (i >= j)
             return j;
         if (mx_strlen(arr[i]) != mx_strlen(arr[j]))
-        {
             swap(&(arr[i]), &(arr[j])) && ++(*swap_count);
-        }
     }
 }
 
