@@ -19,8 +19,7 @@ t_path *mx_create_path(t_link *route) {
 }
 
 void mx_add_path(t_path **paths, t_path *p) {
-    if (!*paths)
-    {
+    if (!*paths) {
         *paths = p;
         return;
     }

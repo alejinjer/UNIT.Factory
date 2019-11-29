@@ -1,5 +1,4 @@
-int mx_sqrt(int x)
-{
+int mx_sqrt(int x) {
     int result;
     int start = 1;
     int middle;
@@ -9,17 +8,14 @@ int mx_sqrt(int x)
         return 0;
     if (x / 2 > 46340)
         end = 46340;
-    while (start <= end)
-    {
+    while (start <= end) {
         middle = (start + end) / 2;
         if (middle * middle == x)
             return middle;
-        if (middle * middle < x)
-        {
+        if (middle * middle < x) {
             start = middle + 1;
             result = 0;
-        }
-        else
+        } else
             end = middle - 1;
     }
 

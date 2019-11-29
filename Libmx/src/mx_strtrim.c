@@ -1,7 +1,6 @@
 #include "libmx.h"
 
-char *mx_strtrim(const char *str)
-{
+char *mx_strtrim(const char *str) {
     char *trimmed = NULL;
     int str_len;
     int trimmed_len = 0;

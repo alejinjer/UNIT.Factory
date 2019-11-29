@@ -1,7 +1,6 @@
 #include "libmx.h"
 
-char *mx_replace_substr(const char *str, const char *sub, const char *replace)
-{
+char *mx_replace_substr(const char *str, const char *sub, const char *replace) {
     int index = 0;
     int result_len;
     char *result;
@@ -14,8 +13,7 @@ char *mx_replace_substr(const char *str, const char *sub, const char *replace)
                                    (mx_strlen(sub) - mx_strlen(replace)));
     result = mx_strnew(result_len);
     sub_len = mx_strlen(sub);
-    while ((index = mx_get_substr_index(str, sub)) != -1)
-    {
+    while ((index = mx_get_substr_index(str, sub)) != -1) {
         tmp = mx_strndup(str, index);
         result = mx_strcat(result, tmp);
         result = mx_strcat(result, replace);

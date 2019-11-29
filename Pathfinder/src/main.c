@@ -1,7 +1,6 @@
 #include "pathfinder.h"
 
-t_main *mx_create_main()
-{
+t_main *mx_create_main() {
     t_main *m = malloc(sizeof(t_main));
 
     m->filename = NULL;
@@ -13,13 +12,11 @@ t_main *mx_create_main()
     return m;
 }
 
-void mx_prepare_for_algorithm(t_main *m)
-{
+void mx_prepare_for_algorithm(t_main *m) {
     t_island *iter = m->islands;
     int i = 0;
 
-    while (iter)
-    {
+    while (iter) {
         iter->index = i;
         iter->paths = malloc(sizeof(t_path *) * m->V);
         for (int i = 0; i < m->V; i++)
@@ -29,8 +26,7 @@ void mx_prepare_for_algorithm(t_main *m)
     }
 }
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     int fd;
     t_main *m;
 
@@ -47,6 +43,5 @@ int main(int argc, char *argv[])
     mx_find_all_paths(m);
     mx_print_all_paths(m);
 
-    system("leaks -q pathfinder"); // не забудь убрать
     return 0;
 }

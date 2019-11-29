@@ -1,5 +1,4 @@
-double mx_pow(double n, unsigned int pow)
-{
+double mx_pow(double n, unsigned int pow) {
     double result = 1;
 
     if (pow == 0)

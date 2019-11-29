@@ -1,7 +1,6 @@
 #include "libmx.h"
 
-int mx_get_substr_index(const char *str, const char *sub)
-{
+int mx_get_substr_index(const char *str, const char *sub) {
     char *result;
 
     if (!str || !sub)

@@ -1,7 +1,6 @@
 #include "libmx.h"
 
-void *mx_memmove(void *dst, const void *src, size_t len)
-{
+void *mx_memmove(void *dst, const void *src, size_t len) {
     unsigned char *pd = (unsigned char *)dst;
     const unsigned char *ps = (unsigned char *)src;
 

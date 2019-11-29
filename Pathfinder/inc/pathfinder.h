@@ -51,14 +51,12 @@ struct s_path
 {
     t_link *route;
     int dist;         // summary distance of route
-    bool is_shortest; // true if dist of this path is minimum in this list of paths
+    bool is_shortest; // true if dist of path is minimum in list of paths
     t_path *next;
 };
 
 //util.c
 void mx_printerr_pf(t_error err, const char *s);
-void mx_terminate(char *error_message);
-bool mx_isnumber(char *s);
 int mx_atoi(const char *str);
 //main.c
 t_main *mx_create_main();

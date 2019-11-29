@@ -1,7 +1,6 @@
 #include "libmx.h"
 
-void *mx_memalloc(size_t size)
-{
+void *mx_memalloc(size_t size) {
     size_t i;
     char *str;
 

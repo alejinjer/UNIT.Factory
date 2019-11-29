@@ -1,39 +1,29 @@
 #include "pathfinder.h"
 
-static t_link *get_end_link(t_link *route)
-{
+static t_link *get_end_link(t_link *route) {
     t_link *iter = route;
 
     while (iter->next)
-    {
         iter = iter->next;
-    }
     return iter;
 }
 
-static void print_route(t_link *route)
-{
+static void print_route(t_link *route) {
     t_link *rt = route;
 
     mx_printstr("Route: ");
-    while (rt)
-    {
-        if (rt->next)
-        {
+    while (rt) {
+        if (rt->next) {
             mx_printstr(rt->linked_island->name);
             mx_printstr(" -> ");
-        }
-        else
-        {
+        } else
             mx_printstr(rt->linked_island->name);
-        }
         rt = rt->next;
     }
     mx_printchar('\n');
 }
 
-static void print_distance(t_link *route)
-{
+static void print_distance(t_link *route) {
     t_link *rt = route->next;
     int dist = 0;
 
@@ -41,15 +31,12 @@ static void print_distance(t_link *route)
     if (!rt->next)
         mx_printint(rt->weight);
     else
-        while (rt && (dist += rt->weight))
-        {
-            if (rt->next)
-            {
+        while (rt) {
+            dist += rt->weight;
+            if (rt->next) {
                 mx_printint(rt->weight);
                 mx_printstr(" + ");
-            }
-            else
-            {
+            } else {
                 mx_printint(rt->weight);
                 mx_printstr(" = ");
                 mx_printint(dist);
@@ -59,15 +46,12 @@ static void print_distance(t_link *route)
     mx_printchar('\n');
 }
 
-static void print_paths(t_path *path)
-{
+static void print_paths(t_path *path) {
     t_path *p = path;
     t_link *end_link;
 
-    while (p) // all routes of each path
-    {
-        if (p->is_shortest)
-        {
+    while (p) {
+        if (p->is_shortest) {
             end_link = get_end_link(p->route);
             mx_printstr("========================================\n");
             mx_printstr("Path: ");
@@ -83,15 +67,12 @@ static void print_paths(t_path *path)
     }
 }
 
-void mx_print_all_paths(t_main *m)
-{
+void mx_print_all_paths(t_main *m) {
     t_island *isl = m->islands;
     t_path *pth;
 
-    while (isl) // all islands
-    {
-        for (int i = 0; i < m->V; i++) // all paths of each island
-        {
+    while (isl) {
+        for (int i = 0; i < m->V; i++) {
             pth = isl->paths[i];
             if (pth)
                 print_paths(pth);

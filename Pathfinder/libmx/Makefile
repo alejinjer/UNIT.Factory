@@ -24,6 +24,7 @@ SRC	= 	mx_binary_search.c\
 		mx_isalpha.c\
 		mx_isdigit.c\
 		mx_islower.c\
+		mx_isnumber.c\
 		mx_isspace.c\
 		mx_isupper.c\
 		mx_itoa.c\

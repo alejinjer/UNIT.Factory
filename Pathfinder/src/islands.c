@@ -1,7 +1,6 @@
 #include "pathfinder.h"
 
-t_island *mx_create_island(char *name)
-{
+t_island *mx_create_island(char *name) {
     t_island *island = malloc(sizeof(t_island));
 
     island->links = NULL;
@@ -10,10 +9,8 @@ t_island *mx_create_island(char *name)
     return island;
 }
 
-void mx_add_island(t_island **islands, t_island *i)
-{
-    if (!*islands)
-    {
+void mx_add_island(t_island **islands, t_island *i) {
+    if (!*islands) {
         *islands = i;
         return;
     }
@@ -21,8 +18,7 @@ void mx_add_island(t_island **islands, t_island *i)
     *islands = i;
 }
 
-t_island *mx_get_island(t_island **islands, char *name)
-{
+t_island *mx_get_island(t_island **islands, char *name) {
     t_island *iter = *islands;
     t_island *last_island;
 
@@ -30,8 +26,7 @@ t_island *mx_get_island(t_island **islands, char *name)
         *islands = mx_create_island(name);
         return *islands;
     }
-    while (iter)
-    {
+    while (iter) {
         if (mx_strcmp(iter->name, name) == 0) {
             mx_strdel(&name);
             return iter;

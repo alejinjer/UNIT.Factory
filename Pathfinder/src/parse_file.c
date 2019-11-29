@@ -1,24 +1,22 @@
 #include "pathfinder.h"
 
-static void check_first_line(t_main *m)
-{
+static void check_first_line(t_main *m) {
     if (m->lineptr == NULL)
         mx_printerr_pf(FILE_EMPTY, m->filename);
-    else if (mx_isnumber(m->lineptr))
-    {
+    else if (mx_isnumber(m->lineptr)) {
         m->V = mx_atoi(m->lineptr);
         mx_strdel(&m->lineptr);
-    }
-    else
+    } else
         mx_terminate("error: line 1 isn\'t valid");
 }
 
-static bool check_line(char *line)
-{
+static bool check_line(char *line) {
     int i = -1;
     int island1 = 0;
     int island2 = 0;
 
+    if (mx_strcmp(line, "") == 0)
+        return false;
     while (mx_isalpha(line[++i]))
         island1++;
     if (line[i] != '-')
@@ -34,8 +32,7 @@ static bool check_line(char *line)
     return true;
 }
 
-static void parse_line(t_main *m)
-{
+static void parse_line(t_main *m) {
     char **ptr;
     char *ptr1;
     t_island *island1;
@@ -67,14 +64,12 @@ static void check_isl_count(t_main *m) {
         mx_terminate("error: invalid number of islands");
 }
 
-void mx_parse_file(t_main *m)
-{
+void mx_parse_file(t_main *m) {
     int line = 2;
 
     mx_read_line(&m->lineptr, BUF_SIZE, DELIM, m->fd);
     check_first_line(m);
-    while (mx_read_line(&m->lineptr, BUF_SIZE, DELIM, m->fd) > 0)
-    {
+    while (mx_read_line(&m->lineptr, BUF_SIZE, DELIM, m->fd) >= 0) {
         if (check_line(m->lineptr))
             parse_line(m);
         else

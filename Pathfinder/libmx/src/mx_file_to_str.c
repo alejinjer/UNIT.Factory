@@ -10,8 +10,7 @@ char *mx_file_to_str(const char *file)
 
     if (!file)
         return NULL;
-    file_descriptor = open(file, O_RDONLY);
-    if (file_descriptor < 0)
+    if ((file_descriptor = open(file, O_RDONLY)) < 0)
         return NULL;
     while ((read_result = read(file_descriptor, buffer, 1023)) > 0)
     {

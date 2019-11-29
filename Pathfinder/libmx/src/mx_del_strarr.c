@@ -1,7 +1,6 @@
 #include "libmx.h"
 
-void mx_del_strarr(char ***arr)
-{
+void mx_del_strarr(char ***arr) {
     char **del_arr = *arr;
 
     while (*del_arr)
