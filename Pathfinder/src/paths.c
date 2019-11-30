@@ -1,7 +1,7 @@
 #include "pathfinder.h"
 
 t_path *mx_create_path(t_link *route) {
-    t_path *path = malloc(sizeof(t_path));
+    t_path *path = mx_memalloc(sizeof(t_path));
     t_link *iter = route;
     t_link *ptr;
 

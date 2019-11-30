@@ -21,6 +21,7 @@ bool mx_isnumber(char *s);
 void mx_terminate(char *error_message);
 int mx_strncmp(const char *s1, const char *s2, size_t n);
 void mx_printerr(const char *s);
+void mx_bzero(void *s, size_t n);
 void *mx_memalloc(size_t size);
 
 // Utils pack

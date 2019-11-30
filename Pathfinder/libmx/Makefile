@@ -11,6 +11,7 @@ INCS	=	$(addprefix $(INCD)/, $(INC))
 
 SRC	= 	mx_binary_search.c\
 		mx_bubble_sort.c\
+		mx_bzero.c\
 		mx_count_substr.c\
 		mx_count_words.c\
 		mx_create_node.c\
